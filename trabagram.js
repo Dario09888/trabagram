@@ -1,7 +1,12 @@
 async function enviarScript(scriptText){
 	const lines = scriptText.split(/[\n\t]+/).map(line => line.trim()).filter(line => line);
-	main = document.querySelector("#Main"),
-    textarea = document.getElementById('editable-message-text');
+	// main = document.querySelector("#Main"),
+	var mmain = document.querySelector(".input-message-container");
+	var boton = document.querySelector(".btn-send-container");
+
+    // textarea = document.getElementById('editable-message-text');
+    // input-message-input is-empty scrollable scrollable-y no-scrollbar input-field-input-fake
+	var textarea = mmain.querySelector(`div[contenteditable="true"]`);
 	
 	if(!textarea) throw new Error("abre una ventana weon !")
 	
@@ -13,7 +18,7 @@ async function enviarScript(scriptText){
 		textarea.dispatchEvent(new Event('change', {bubbles: true}));
 	
 		setTimeout(() => {
-			(main.querySelector(`[class="icon icon-send"]`)).click();
+			(boton.querySelector(`[class="btn-icon rp btn-circle btn-send animated-button-icon send"]`)).click();
 		}, 100);
 		
 		if(lines.indexOf(line) !== lines.length - 1) await new Promise(resolve => setTimeout(resolve, 250));
